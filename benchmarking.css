@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f9fa;
+  color: #046d76;
+}
+
+.header {
+  background-color: #075860;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  font-weight: 400;
+}
+
+.social-icons a {
+  color: white;
+  margin-left: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.header-main {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+  height: 40px;
+}
+
+.nav a {
+  color: #046d76;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.btn-login {
+  background-color: #046d76;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.hero {
+  background-image: url('repo-catur2/wwwroot/image/service/main-top3.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 4rem 1rem;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(7, 88, 96, 0.7);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.scroll-instruction {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.main-content {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #e6f0f2;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.about-card {
+  position: relative;
+}
+
+.about-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.about-card h2 {
+  color: #046d76;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #046d76;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.collapse-content {
+  color: #08444b;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+.form-section {
+  flex: 2;
+  background-color: #e6f0f2;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.benchmark-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+fieldset {
+  border: none;
+  flex: 1 1 45%;
+  min-width: 280px;
+}
+
+legend {
+  font-weight: 600;
+  color: #046d76;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+input[readonly] {
+  background-color: #cfd8dc;
+  color: #455a64;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-contact {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #046d76;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #075860;
+}
+
+.btn-secondary {
+  background-color: #a7c4c7;
+  color: #075860;
+  margin-left: 1rem;
+}
+
+.btn-secondary:hover {
+  background-color: #8bb0b3;
+}
+
+.result-section {
+  text-align: center;
+  margin-top: 2rem;
+  color: #046d76;
+}
+
+.result-section img {
+  max-width: 150px;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  background-color: #075860;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+.btn-contact {
+  background-color: #007bff;
+  color: white;
+  margin-top: 1rem;
+}
+
+.btn-contact:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  .benchmark-form {
+    flex-direction: column;
+  }
+  fieldset {
+    flex: 1 1 100%;
+  }
+  .header-top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .header-main {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
