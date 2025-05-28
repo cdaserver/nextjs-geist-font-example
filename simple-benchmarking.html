@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Benchmarking Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f9fa;
+      margin: 0;
+      padding: 20px;
+      color: #046d76;
+    }
+    header {
+      background-color: #075860;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    select, input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 1.5rem;
+      background-color: #075860;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+    .result {
+      margin-top: 2rem;
+      background: #e0f2f1;
+      padding: 1rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>Simulasi Benchmarking Laporan Keuangan</header>
+  <div class="container">
+    <form id="benchmarkForm">
+      <label for="industry">Jenis Kegiatan Usaha</label>
+      <select id="industry" required>
+        <option value="">Pilih Jenis Kegiatan Usaha</option>
+        <option value="Garmen">Industri Garmen</option>
+        <option value="Furnitur">Industri Furnitur</option>
+        <option value="Lainnya">Industri Lainnya</option>
+      </select>
+
+      <label for="classification">Klasifikasi Usaha</label>
+      <select id="classification" required>
+        <option value="">Pilih Klasifikasi Usaha</option>
+        <option value="Klasifikasi1">Klasifikasi 1</option>
+        <option value="Klasifikasi2">Klasifikasi 2</option>
+      </select>
+
+      <label for="subclassification">Subklasifikasi Usaha</label>
+      <select id="subclassification" required>
+        <option value="">Pilih Subklasifikasi Usaha</option>
+        <option value="Sub1">Subklasifikasi 1</option>
+        <option value="Sub2">Subklasifikasi 2</option>
+      </select>
+
+      <label for="year">Tahun Pajak</label>
+      <select id="year" required>
+        <option value="">Pilih Tahun Pajak</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+      </select>
+
+      <label for="companyName">Nama Perusahaan</label>
+      <input type="text" id="companyName" placeholder="Masukkan Nama Perusahaan" required />
+
+      <label for="sales">Penjualan (Rp)</label>
+      <input type="number" id="sales" placeholder="Masukkan Penjualan" required min="0" />
+
+      <label for="cogs">Harga Pokok Penjualan (Rp)</label>
+      <input type="number" id="cogs" placeholder="Masukkan Harga Pokok Penjualan" required min="0" />
+
+      <label for="operationalExpense">Beban Operasional (Rp)</label>
+      <input type="number" id="operationalExpense" placeholder="Masukkan Beban Operasional" required min="0" />
+
+      <button type="submit">Hitung</button>
+    </form>
+
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    document.getElementById('benchmarkForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const sales = parseFloat(document.getElementById('sales').value);
+      const cogs = parseFloat(document.getElementById('cogs').value);
+      const operationalExpense = parseFloat(document.getElementById('operationalExpense').value);
+
+      // Simple calculations similar to the original app
+      const grossProfit = sales - cogs;
+      const operatingProfit = grossProfit - operationalExpense;
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `
+        <p><strong>Laba Kotor:</strong> Rp ${grossProfit.toLocaleString('id-ID')}</p>
+        <p><strong>Laba Operasional:</strong> Rp ${operatingProfit.toLocaleString('id-ID')}</p>
+      `;
+    });
+  </script>
+</body>
+</html>
