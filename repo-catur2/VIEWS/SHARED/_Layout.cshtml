@@ -1,0 +1,284 @@
+@using Syncfusion.EJ2
+@using Syncfusion.EJ2.Navigations
+@{
+    var youtbueLink = "https://www.youtube.com/@centraldataaccess";
+    var tiktokLink = "https://www.tiktok.com/@centraldataaccess.id";
+    var linkedInLink = "https://id.linkedin.com/company/central-data-access";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="~/image/layout/iconnew.png" sizes="32x32" />
+    <link rel="icon" href="~/image/layout/iconnew.png" sizes="192x192" />
+    <title>@ViewData["Title"] - WebApps</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/$safeprojectname$.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/26.1.42/material.css" />
+    <script src="https://cdn.syncfusion.com/ej2/26.1.42/dist/ej2.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" style="padding-left: 5rem; padding-right: 5rem">
+                        <div class="d-flex justify-content-center mt-3 mb-3">
+                            <img class="img-fluid" src="~/image/layout/logo.png" style="width: 13rem" alt="Alternate Text" />
+                        </div>
+                        <form asp-controller="Auth" asp-action="Login" method="POST">
+                            <div class="mb-3">
+                                <label for="login_username" class="form-label">Email or username</label>
+                                <input type="text" class="form-control" name="username" id="login_email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                            <div class="mb-3">
+                                <input type="submit" class="btn btn-tosca btn-primary w-100">
+                            </div>
+                            <div class="mb-3" style="color: #046d76">
+                                <a href="https://centraldataaccess.co.id/password-reset/" class="modal-hyperlink2">
+                                    Lupa Password?
+                                </a>
+                            </div>
+                            <div class="mb-3" style="color: #046d76">
+                                Belum Memiliki akun? <a href="https://centraldataaccess.co.id/register/" class="modal-hyperlink2"> Daftar Sekarang</a>
+                            </div>
+
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{
+            Dictionary<string, object> ButtonAttribute = new Dictionary<string, object>();
+            ButtonAttribute.Add("aria-label", "menu");
+        }
+        @if (ViewData["errMsg"] != null)
+        {
+            <div class="toast-container position-fixed end-0 p-3" style="top: 15%;">
+                <div id="dangerToast" class="toast fade show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-danger text-white">
+                        <strong class="me-auto">Error</strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        @Html.Raw(ViewData["errMsg"]);
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="row align-items-center justify-content-between" style="background-color:#00858D; height:30px">
+            <div class="ms-3 col-5 d-flex justify-content-start">
+                <p class="fs-6 my-auto" style="color:white">cs@centraldataaccess.co.id | 0251 8574 375</p>
+            </div>
+            <div class="col-5 d-flex justify-content-end">
+                <div class="btn-group" role="group" aria-label="LinkedIn" style="padding-left:20px">
+                    <a href="@linkedInLink"><img style="height: 17px" src="~/image/layout/linkedin.svg"></a>
+                </div>
+                <div class="btn-group" role="group" aria-label="TikTok" style="padding-left:20px">
+                    <a href="@tiktokLink"><img style="height: 17px" src="~/image/layout/tik-tok.svg"></a>
+                </div>
+                <div class="btn-group" role="group" aria-label="Youtube" style="padding-left:20px">
+                    <a href="@youtbueLink"><img style="height: 17px" src="~/image/layout/youtube.svg"></a>
+                </div>
+            </div>
+        </div>
+        <div class="row sticky-top">
+            <div class="col-12 bg-light">
+                <nav class="navbar navbar-expand-lg bg-light" style="height: 45px">
+                    <a class="navbar-brand" href="https://centraldataaccess.co.id/">
+                        <img class="img-fluid" src="~/image/layout/logo.png" style="height: 35px" alt="Alternate Text" />
+                    </a>
+                    <a class="btn d-none d-md-block ms-auto" href="https://centraldataaccess.co.id">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#00858D"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" /></svg>
+                    </a>
+                    <a class="my-auto d-none d-md-block" style="color:#08444B; text-decoration: none;" href="https://benchmarking.centraldataaccess.co.id"> | <i>Benchmarking</i> Laporan Keuangan  | </a>
+                    @*<a class="my-auto d-none d-md-block" style="color:#08444B; text-decoration: none;" href="https://benchmarking.centraldataaccess.co.id/converter"> &nbsp; <i>Converter</i> Coretax</a>
+                    @* <button class="navbar-toggler d-none d-md-block" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#046D76"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></span>
+                    </button> *@
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        @* <div class="btn-group ms-auto me-3 d-none d-lg-block">
+                            <a href="#" class="btn active" aria-current="page">ID</a>
+                            <a href="#" class="btn">EN</a>
+                        </div> *@
+                        @if (Context.Session.GetString("Token") != null)
+                        {
+                            <div class="ms-auto me-3 d-none d-lg-block dropdown">
+                                <a class="nav-link dropdown-toggle" id="isLogin" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #046d76">
+                                    @Context.Session.GetString("Name")
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Keluar</a></li>
+                                </ul>
+                            </div>
+                        }
+                        else{
+                            <button class="btn btn-outline-tosca ms-auto me-3 d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#loginModal" style="height:35px">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" class="icon-outline-tosca"><path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z" /></svg></span>
+                                Masuk
+                            </button>
+                        }
+                        <ul class="navbar-nav me-auto my-3 mb-lg-0 d-lg-none d-flex align-items-end">
+                            @* <li class="nav-item ms-auto">
+                                <div class="btn-group ms-auto mb-3">
+                                    <a href="#" class="btn active" aria-current="page">ID</a>
+                                    <a href="#" class="btn">EN</a>
+                                </div>
+                            </li> *@
+                            
+                            @if(Context.Session.GetString("Token") != null)
+                            {
+                            <li class="nav-item dropdown ms-auto">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #046d76">
+                                        @Context.Session.GetString("Name")
+                                </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Keluar</a></li>
+                                </ul>
+                            </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item ms-auto">
+                                    <button type="button" class="btn btn-outline-tosca" data-bs-toggle="modal" data-bs-target="#loginModal" style="height:35px">
+                                        <span><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" class="icon-outline-tosca"><path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z" /></svg></span>
+                                        Masuk
+                                    </button>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <main role="main">
+            @RenderBody()
+        </main>
+
+        <footer>
+            <div class="row px-4 pt-5 pb-3" style="background-color:#072125">
+             @* <div class="col-12">
+                    <p class="fs-6" style="color:white">PT Central Data Access</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="fs-6 mb-1 footer-sub-title">
+                        Jakarta
+                    </p>
+                    <a href="https://maps.app.goo.gl/tnHWmEYYLu3A2UKb8?g_st=ic" target="_blank" class="footer-description mb-3">
+                        JlJl. DI. Panjaitan No.45, Jatinegara, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta
+                    </a>
+                    <p class="fs-6 mb-1 footer-sub-title">
+                        Bogor
+                    </p>
+                    <a href="https://maps.app.goo.gl/Rx1dqQvG7x4WXYMp8" target="_blank" class="footer-description mb-3">
+                        Jalan Baugenville Z7 No. 10,Kedung Waringin, Tanah Sareal, Kota Bogor, Jawa Barat
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <p class="fs-6 mb-1 footer-sub-title">
+                        Telepon
+                    </p>
+                    <a href="tel:02518574375" class="footer-description ">
+                        0251 8574 375
+                    </a>
+                    <br />
+                    <p class="fs-6 mb-1 footer-sub-title">
+                        WhatsApp
+                    </p>
+                    <a href="https://api.whatsapp.com/send/?phone=6282210019797&text&type=phone_number&app_absent=0" target="_blank" class="footer-description ">
+                        0822 1001 9797
+                    </a>
+                    <br />
+                    <a href="https://api.whatsapp.com/send/?phone=6282210019696&text&type=phone_number&app_absent=0" target="_blank" class="footer-description ">
+                        0822 1001 9696
+                    </a>
+                    <br />
+                    <p class="fs-6 mb-1 footer-sub-title">
+                        Email
+                    </p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cs@centraldataaccess.co.id" target="_blank" class="footer-description ">
+                        cs@centraldataaccess.co.id
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="fs-6 mb-1 footer-sub-title">
+                                Perusahaan
+                            </p>
+                            <a href="https://centraldataaccess.co.id/tentang-cda/" class="footer-description ">
+                                Tentang CDA
+                            </a>
+                            <br />
+                            <a href="https://centraldataaccess.co.id/solusi-cda/" class="footer-description ">
+                                Solusi CDA
+                            </a>
+                            <br />
+                            <a href="https://benchmarking.centraldataaccess.co.id/" class="footer-description ">
+                                <i>Benchmarking</i> Laporan Keuangan
+                            </a>
+                            <br />
+                            <a href="https://centraldataaccess.co.id/category/pajak/" class="footer-description ">
+                                Info Perpajakan
+                            </a>
+                            <br />
+                            <a href="https://centraldataaccess.co.id/kontak-cda/" class="footer-description ">
+                                Kontak CDA
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <p class="fs-6 mb-1 footer-sub-title">
+                                Jasa Kami
+                            </p>
+                            <a class="footer-description mb-1" href="https://centraldataaccess.co.id/solusi-cda/">
+                                <i>Transfer Pricing Service</i>
+                            </a>
+                            <br />
+                            <a href="https://benchmarking.centraldataaccess.co.id/" class="footer-description mb-1">
+                                <i>Benchmarking</i> Laporan Keuangan
+                            </a>
+                            <br />
+                            <a href="https://centraldataaccess.co.id/solusi-cda/" class="footer-description mb-1">
+                                Jasa Perpajakan Umum
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="btn-group" role="group" aria-label="LinkedIn">
+                        <a href="@linkedInLink" class="btn"><img style="width: 1.5rem" src="~/image/layout/linkedin.svg"></a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="TikTok">
+                        <a href="@tiktokLink" class="btn"><img src="~/image/layout/tik-tok.svg"></a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Youtube">
+                        <a href="@youtbueLink" class="btn"><img src="~/image/layout/youtube.svg"></a>
+                    </div>
+                </div> *@
+                <div class="col-12 mt-5 pt-3 d-flex justify-content-between border-top" style="opacity: 50%">
+                    <p class="footer-description">Copyright. All Rights Reserved 2024</p>
+                    <a href="https://centraldataaccess.co.id/wp-content/uploads/2024/11/TC-FOOTER-WEB.pdf" class="footer-description">Syarat dan Ketentuan</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <ejs-scripts></ejs-scripts>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- Syncfusion ASP.NET MVC Script Manager -->
+    @Html.EJS().ScriptManager()
+</body>
+</html>
