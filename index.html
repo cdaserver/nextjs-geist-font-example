@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulasi Benchmarking Laporan Keuangan</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="repo-catur2/wwwroot/image/layout/favicon.jpeg" type="image/jpeg" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container">
+        <div class="contact-info">
+          <span>cs@centraldataaccess.co.id | 0251 8574 375</span>
+        </div>
+        <div class="social-links">
+          <a href="#" target="_blank" rel="noopener">
+            <img src="repo-catur2/wwwroot/image/layout/linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="#" target="_blank" rel="noopener">
+            <img src="repo-catur2/wwwroot/image/layout/tik-tok.svg" alt="TikTok" />
+          </a>
+          <a href="#" target="_blank" rel="noopener">
+            <img src="repo-catur2/wwwroot/image/layout/youtube.svg" alt="YouTube" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container">
+        <a href="/" class="logo">
+          <img src="repo-catur2/wwwroot/image/layout/logo.svg" alt="Central Data Access" />
+        </a>
+        <nav class="main-nav">
+          <a href="#" class="nav-link">Benchmarking Laporan Keuangan</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn-login">
+            <img src="repo-catur2/wwwroot/image/layout/login.svg" alt="" />
+            Masuk
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="toast-hide hidden">
+    <div class="toast-message">
+      Hasil benchmarking akan ditampilkan setelah Anda mengisi seluruh informasi pada form di atas. Lengkapi informasi dan klik tombol hitung
+    </div>
+  </div>
+
+  <div class="custome-jumbotron">
+    <div class="breadcrumb-nav">
+      <div class="nav-card">
+        <a href="https://centraldataaccess.co.id" class="nav-link">
+          <img src="repo-catur2/wwwroot/image/service/home.svg" alt="Home"/>
+        </a>
+        <a class="nav-text" href="https://benchmarking.centraldataaccess.co.id/">
+          <span class="italic">Benchmarking</span> Laporan Keuangan
+        </a>
+      </div>
+    </div>
+
+    <div class="jumbotron-content">
+      <div class="title-section">
+        <h1>
+          Simulasi <span class="italic">Benchmarking</span><br/>
+          Laporan Keuangan
+        </h1>
+      </div>
+      <div class="description-section">
+        <p>
+          Kami menyediakan <span class="italic">Benchmarking</span> Data Pembanding Eksternal menurut klasifikasi industri usaha (Industri Garmen, Industri Furnitur, dan Industri lainnya untuk menentukan harga <span class="italic">transfer</span>).
+        </p>
+      </div>
+      <div class="scroll-instruction">
+        <img src="repo-catur2/wwwroot/image/service/mouse.svg" alt="Mouse" />
+        <span>Gulir kebawah dan gunakan demo fitur kami.</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="about-card">
+          <div class="card-inner">
+            <img src="repo-catur2/wwwroot/image/service/main-left.svg" alt="About Image" class="card-image"/>
+            <div class="card-content">
+              <div class="card-header">
+                <h2>Tentang Data Pembanding Laporan Keuangan</h2>
+                <button class="toggle-btn" type="button" aria-expanded="false">
+                  <img src="repo-catur2/wwwroot/image/service/info.svg" alt="Toggle Info" />
+                </button>
+              </div>
+              <div class="card-body collapse" id="about-content">
+                <p>
+                  Berdasarkan data pembanding milik Central Data Access yang telah diolah berdasarkan
+                  klasifikasi usaha, batas kewajaran harga transfer sesuai dengan Prinsip Kewajaran dan
+                  Kelaziman Usaha, margin penentuan harga transfer yang ditetapkan sebaiknya berada dalam
+                  pertimbangan rentang kewajaran (Pasal 12 ayat (1) PMK No. 172 Tahun 2023).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="form-section">
+        <div class="form-card">
+          <div class="form-wrapper">
+            <div class="form-row">
+              <div class="form-col">
+                <h3>Industri Pembanding</h3>
+                <div class="form-group">
+                  <select id="jenisKegiatanUsaha" class="form-control">
+                    <option value="">Jenis Kegiatan Usaha</option>
+                    <option value="manufaktur">Manufaktur</option>
+                  </select>
+
+                  <select id="klasifikasiUsaha" class="form-control">
+                    <option value="">Klasifikasi Usaha</option>
+                    <option value="pakan-ternak">Industri Pakan Ternak</option>
+                  </select>
+
+                  <select id="subKlasifikasiUsaha" class="form-control">
+                    <option value="">Subklasifikasi Usaha</option>
+                  </select>
+
+                  <select id="tahunPajak" class="form-control">
+                    <option value="">Tahun Pajak</option>
+                    <option value="2023">2023</option>
+                  </select>
+
+                  <select id="rentangTahun" class="form-control">
+                    <option value="">Rentang Tahun</option>
+                    <option value="2021-2023">2021-2023</option>
+                  </select>
+
+                  <select id="metode" class="form-control">
+                    <option value="">Metode</option>
+                    <option value="tnmm">TNMM</option>
+                  </select>
+
+                  <select id="rasio" class="form-control">
+                    <option value="">Rasio</option>
+                    <option value="berry">Berry Ratio</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-col">
+                <h3>Informasi Perusahaan</h3>
+                <div class="form-group">
+                  <input type="text" id="namaPerusahaan" class="form-control" placeholder="Nama Perusahaan" />
+                  <input type="number" id="penjualan" class="form-control" placeholder="Penjualan" />
+                  <input type="number" id="hargaPokokPenjualan" class="form-control" placeholder="Harga Pokok Penjualan" />
+                  <input type="text" id="labaKotor" class="form-control bg-disabled" readonly placeholder="Laba Kotor" />
+                  <input type="number" id="bebanOperasional" class="form-control" placeholder="Beban Operasional" />
+                  <input type="text" id="labaOperasional" class="form-control bg-disabled" readonly placeholder="Laba Operasional" />
+                  <input type="text" id="testedParty" class="form-control bg-disabled" readonly placeholder="Tested Party (%)" />
+
+                  <button type="button" id="btnHitung" class="btn btn-tosca">HITUNG</button>
+                  <button type="button" id="btnReset" class="btn btn-tosca">RESET</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <div class="result-content to-hide hidden">
+              <!-- Dynamic result content will be inserted here -->
+            </div>
+            <div class="empty-state to-show">
+              <img src="repo-catur2/wwwroot/image/service/empty.svg" alt="No Results" />
+              <h4>Belum Ada Hasil</h4>
+              <p>Hasil Benchmarking akan ditampilkan setelah anda mengisi seluruh informasi pada form di atas. Lengkapi informasi dan klik tombol Hitung.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="contact-section">
+    <h2>Request Data Pembanding</h2>
+    <p>Ingin mengajukan data pembanding yang relevan sesuai kebutuhan perusahaan Anda?</p>
+    <button onclick="window.location.href='https://centraldataaccess.co.id/kontak-cda/'" class="btn btn-contact">
+      Hubungi Kami
+    </button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
