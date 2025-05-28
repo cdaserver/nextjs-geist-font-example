@@ -1,0 +1,299 @@
+@using Syncfusion.EJ2
+@using Syncfusion.EJ2.DropDowns
+@using Syncfusion.EJ2.Inputs
+@using WebApps.Models.ServiceModel;
+@using WebApps.Controllers;
+
+
+@{
+    ViewData["Title"] = "Simulasi Benchmarking Laporan Keuangan";
+}
+
+<link rel="stylesheet" href="~/css/controller/benchmarking.css" asp-append-version="true" />
+<style>
+    .custom-card {
+        min-height: 5rem;
+    }
+
+    .bg-disabled{
+        background-color: #0000000f !important
+    }
+    .btn-unduh{
+        background-color: #075860;
+        border-color: #075860;
+        color: white;
+    }
+
+    .e-spin-down {
+        display: none !important;
+    }
+
+    .e-spin-up{
+        display: none !important;
+    }
+</style>
+
+<div class="toast-hide hidden">
+    @* @Html.EJS().Toast("toast_default").Title("Information").Position(p => p.X("Right").Y("Bottom")).TimeOut(5000).ContentTemplate(@<div>Penghitungan Benchmarking Laporan Keuangan tidak tersedia</div>).Created("created").Icon("e-circle-info").BeforeOpen("toastbefore").Render() *@
+    @Html.EJS().Toast("toast_default").Title("Information").Position(p => p.X("Right").Y("Bottom")).TimeOut(5000).ContentTemplate(@<div>Hasil benchmarking akan ditampilkan setelah Anda mengisi seluruh informasi pada form di atas. Lengkapi informasi dan klik tombol hitung</div>).Created("created").Icon("e-circle-info").BeforeOpen("toastbefore").Render()
+</div>
+
+<div class="row custome-jumbotron">
+    <div class="col-12 mb-3">
+        <div class="card mb-3" style="width: 16rem; background-color: rgba(255, 255, 255, 0.12)">
+            <div class="card-body d-flex">
+                <a href="https://centraldataaccess.co.id">
+                    <img src="~/image/service/home.svg"/>
+                </a>
+                <a class="fs-6 border-start border-white my-auto ms-2 ps-2 modal-hyperlink2" style="font-size:0.75rem !important; color:white" href="https://benchmarking.centraldataaccess.co.id/">
+                    <span class="fst-italic">Benchmarking</span> Laporan Keuangan
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="fs-1 fw-100" style="color:white">
+            Simulasi <div class="fst-italic">Benchmarking</div>
+            Laporan Keuangan
+        </div>
+    </div>
+    <div class="col-md-6 px-3">
+        <p class="fs-4" style="color:white; text-align: justify">
+            Kami menyediakan <span class="fst-italic">Benchmarking</span> Data Pembanding Eksternal menurut klasifikasi industri usaha (Industri Garmen, Industri Furnitur, dan Industri lainnya untuk menentukan harga <i>transfer</i>.
+        </p>
+    </div>
+    <div class="col-12 d-none d-lg-block mt-3">
+        <p class="fs-6 my-4" style="color:#93C6CE; text-align: justify">
+            <span><img src="~/image/service/mouse.svg" /></span> Gulir kebawah dan gunakan demo fitur kami.
+        </p>
+    </div>
+</div>
+<div class="row py-5" style="padding-left: 5%; padding-right: 5%; background-color:#F5F9FA">
+    <div class="col-md-4 mb-3">
+        <div class="card p-3 rounded" style="background-color:rgba(0, 133, 141, 0.08);">
+            <div class="card p-2 rounded">
+                <img src="~/image/service/main-left.svg" class="card-img-top" alt="...">
+                <div class="card-body d-flex justify-content-between align-items-center" style="color:#046D76">
+                    <h5 class="card-title">Tentang Data Pembanding Laporan Keuangan</h5>
+                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#news" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#046D76"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></span>
+                    </button>
+                </div>
+                <div class="card-footer collapse" id="news" style="background-color: transparent">
+                    <p style="color: #08444B">
+                        Berdasarkan data pembanding milik Central Data Access yang telah diolah berdasarkan
+                        klasifikasi usaha, batas kewajaran harga transfer sesuai dengan Prinsip Kewajaran dan
+                        Kelaziman Usaha, margin penentuan harga transfer yang ditetapkan sebaiknya berada dalam
+                        pertimbangan rentang kewajaran (Pasal 12 ayat (1) PMK No. 172 Tahun 2023).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 mb-3">
+        <div class="card p-3 rounded" style="background-color:rgba(0, 133, 141, 0.08);">
+            <div class="card p-2 mb-3 rounded">
+                <div class="card-body" style="color:#046D76">
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <h6 class="card-title">Industri Pembanding</h6>
+                            <div class="card-body" style="padding: unset">
+                                @Html.EJS().ComboBox("jeniskegiatanusaha").Placeholder("Jenis Kegiatan Usaha").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).PopupHeight("220px").DataSource((IEnumerable<BenchmarkingModel>)ViewBag.jenis).Change("jenisChange").Fields(new ComboBoxFieldSettings { Text = "JenisKegiatanUsaha", Value = "JenisKegiatanUsaha" }).Render()
+                                @Html.EJS().ComboBox("klasifikasiusaha").Placeholder("Klasifikasi Usaha").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).PopupHeight("220px").Change("klasifikasiChange").DataSource((IEnumerable<BenchmarkingModel>)ViewBag.klasifikasi).Fields(new ComboBoxFieldSettings { Text = "KlasifikasiUsaha", Value = "KlasifikasiUsaha" }).Render()
+                                @Html.EJS().ComboBox("subklasifikasiusaha").Placeholder("Subklasifikasi Usaha").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).PopupHeight("220px").Change("subklasifikasiChange").DataSource((IEnumerable<BenchmarkingModel>)ViewBag.subklasifikasi).Fields(new ComboBoxFieldSettings { Text = "SubKlasifikasiUsaha", Value = "SubKlasifikasiUsaha" }).Render()
+                                @Html.EJS().ComboBox("tahunpajak").CssClass("form-control").CssClass("form-control").Placeholder("Tahun Pajak").FloatLabelType(FloatLabelType.Auto).PopupHeight("220px").DataSource((IEnumerable<object>)ViewBag.tahunpajak).Render()
+                                @Html.EJS().ComboBox("tahun").Placeholder("Rentang Tahun").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).PopupHeight("220px").DataSource((IEnumerable<object>)ViewBag.tahun).Render()
+                                @Html.EJS().ComboBox("metode").Placeholder("Metode").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).PopupHeight("220px").DataSource((IEnumerable<BenchmarkingModel>)ViewBag.metode).Change("metodeChange").Fields(new ComboBoxFieldSettings { Text = "Metode", Value = "Metode" }).Render()
+                                @Html.EJS().ComboBox("ratio").Placeholder("Rasio").CssClass("form-control tentang_rasio").FloatLabelType(FloatLabelType.Auto).PopupHeight("220px").DataSource((IEnumerable<BenchmarkingModel>)ViewBag.ratio).Change("ratioChange").Fields(new ComboBoxFieldSettings { Text = "Rasio", Value = "Rasio" }).Render()
+                                <div id="penjelasanMetode" class="to-hide hidden">
+                                    <p class="muted" style="margin-bottom: 0px">Metode</p>
+                                    <small id="tentang_metode" style="font-size: 0.7rem"></small>
+                                </div>
+                                <div id="penjelasan" class="to-hide hidden">
+                                    <p class="muted" style="margin-bottom: 0px">Rumus Rasio Keuangan</p>
+                                    <small id="tentang_rasio" style="font-size: 0.7rem"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h6 class="card-title">Informasi Perusahaan</h6>
+                            <div class="card-body" style="padding: unset">
+                                @Html.EJS().TextBox("namaperusahaan").Placeholder("Nama Perusahaan").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).Render()
+                                @Html.EJS().NumericTextBox("penjualan").Format("N0").Placeholder("Penjualan").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).Render()
+                                @Html.EJS().NumericTextBox("hargapokokpenjualan").Format("N0").Placeholder("Harga Pokok Penjualan").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).Render()
+                                @Html.EJS().NumericTextBox("labakotor").Format("N0").Placeholder("Laba Kotor").CssClass("form-control bg-disabled").Readonly(true).FloatLabelType(FloatLabelType.Auto).Render()
+                                @Html.EJS().NumericTextBox("bebanoperasional").Format("N0").Placeholder("Beban Operasional").CssClass("form-control").FloatLabelType(FloatLabelType.Auto).Render()
+                                @Html.EJS().NumericTextBox("labaoperasional").Format("N0").Placeholder("Laba Operasional").CssClass("form-control bg-disabled").Readonly(true).FloatLabelType(FloatLabelType.Auto).Render()
+                                @Html.EJS().TextBox("testedparty").Placeholder("Tested Party (%)").CssClass("form-control bg-disabled").Readonly(true).FloatLabelType(FloatLabelType.Auto).Render()
+                                <p class="muted">
+                                    Tested Party <a href="#" data-bs-toggle="tooltip" data-bs-title="Tested Party adalah Rasio Pihak yang Diuji.">
+                                        <span><img src="~/image/service/info.svg" /></span>
+                                    </a>
+                                </p>
+                                @Html.EJS().Button("btnHitung").Content("Hitung").CssClass("btn btn-tosca btn-hitung rounded mt-3 w-100 h-25").Render()
+                                @Html.EJS().Button("btnReset").Content("Reset").CssClass("btn btn-tosca btn-reset rounded mt-3 w-100 h-25").Render()
+                                @* <button type="button" onclick="generatePDF()" class="btn btn-tosca rounded mt-3 w-100 h-25">Unduh Laporan</button> *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-2 rounded">
+                <div class="card-body" style="color:#046D76">
+                    <div class="row mb-3 to-hide hidden">
+                        <div class="col-md-2 mb-2">
+                            <div class="card custom-card text-center mb-3">
+                                <div class="card-body d-flex justify-content-center align-items-center" style="padding: 0.5rem 0.5rem !important;">
+                                    <div class="row w-100">
+                                        <div class="col-12 px-0">
+                                            <h5 class="card-title" id="jeniskegiatanusaharesult" style="font-weight: bold;font-size: 0.9rem;color: #046D76;"></h5>
+                                            <p class="card-text" style="font-size: 0.6rem;">Jenis Kegiatan Usaha</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Card -->
+                        <div class="col-md-3 mb-3">
+                            <div class="card custom-card text-center mb-3">
+                                <div class="card-body d-flex justify-content-center align-items-center" style="padding: 0.5rem 0.5rem !important;">
+                                    <div class="row w-100">
+                                        <div class="col-12 px-0">
+                                            <h5 class="card-title" id="klasifikasiusaharesult" style="font-weight: bold;font-size: 0.9rem;color: #046D76;"></h5>
+                                            <div class="card-text" style="font-size: 0.6rem;">Klasifikasi Usaha</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Card -->
+                        <div class="col-md-3 mb-3">
+                            <div class="card custom-card text-center mb-3">
+                                <div class="card-body d-flex justify-content-center align-items-center" style="padding: 0.5rem 0.5rem !important;">
+                                    <div class="row w-100">
+                                        <div class="col-12 px-0">
+                                            <h5 class="card-title" id="subklasifikasiusaharesult" style="font-weight: bold;font-size: 0.9rem;color: #046D76;"></h5>
+                                            <div class="card-text" style="font-size: 0.6rem;">Subklasifikasi Usaha</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Third Card -->
+                        <div class="col-md-2 mb-2">
+                            <div class="card custom-card text-center mb-3">
+                                <div class="card-body d-flex justify-content-center align-items-center" style="padding: 0.5rem 0.5rem !important;">
+                                    <div class="row w-100">
+                                        <div class="col-12 px-0">
+                                            <h5 class="card-title" id="ratioresult" style="font-weight: bold;font-size: 0.9rem;color: #046D76;"></h5>
+                                            <div class="card-text" style="font-size: 0.6rem;">Rasio Method</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fourth Card -->
+                        <div class="col-md-2 mb-2">
+                            <div class="card custom-card text-center mb-3">
+                                <div class="card-body d-flex justify-content-center align-items-center" style="padding: 0.5rem 0.5rem !important;">
+                                    <div class="row w-100">
+                                        <div class="col-6 px-0">
+                                            <div class="card-title" id="testedpartyresult" style="font-weight: bold;font-size: 0.9rem;color: #046D76;"></div>
+                                            <div class="card-text" style="font-size: 0.6rem;">Tested Party</div>
+                                        </div>
+                                        <div class="col-6 px-0">
+                                            <div class="card-title" id="tahunpajakresult" style="font-weight: bold;font-size: 0.9rem;color: #046D76;"></div>
+                                            <div class="card-text" style="font-size: 0.6rem;">Tahun Pajak</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" style=" font-size: 0.9rem">
+                                    <thead style="color: #046D76;">
+                                        <tr id="grid-header">
+                                        </tr>
+                                    </thead>
+                                    <tbody id="grid-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" style=" font-size: 0.9rem">
+                                    <thead style="color: #046D76;">
+                                        <tr id="grid2-header">
+                                        </tr>
+                                    </thead>
+                                    <tbody id="grid2-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-8 mb-3 d-flex justify-content-start">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="term">
+                                <label class="form-check-label" for="term">
+                                    Dengan ini saya menyetujui sesuai dengan <a href="https://centraldataaccess.co.id/wp-content/uploads/2024/11/TC-FOOTER-WEB.pdf">Syarat & Ketentuan</a> dari Central Data Access.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3 d-flex justify-content-end">
+                            <button type="button" disabled="true" id="btnDownload" onclick="generatePDF()" class="btn btn-tosca btn-unduh btn-disabled">Unduh Laporan</button>
+                        </div>
+                    </div>
+                    <div class="row to-show mb-3">
+                        <div class="col-12">
+                            <img class="mx-auto d-block w-50" src="~/image/service/empty.svg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row p-3 contact-section">
+    <div class="col-md-12 text-center py-5">
+        @* <p class="fs-5" style="color: #3199A3">Konsultasi</p> *@
+        <p class="fs-3" style="color: white">Request Data Pembanding</p>
+        <p class="fs-5" style="color: #C4DFE4">Ingin mengajukan data pembanding yang relevan sesuai kebutuhan perusahaan Anda?</p>
+        <button onclick="document.location='https://centraldataaccess.co.id/kontak-cda/'" class="btn btn-primary">
+            Hubungi Kami
+        </button>
+    </div>
+    @* <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div class="card w-100">
+            <div class="card-body" style="padding: 0.5rem">
+                <div class="row d-flex mx-auto">
+                    <div class="col-4 col-lg-3 px-1 d-flex">
+                        <p class="fw-bold my-auto">Hubungi kami di</p>
+                    </div>
+                    <div class="col-8 col-lg-5 px-1 d-flex">
+                        <a href="https://api.whatsapp.com/send/?phone=6282210019696&text&type=phone_number&app_absent=0" target="_blank" class="fw-bold my-auto fs-3" style="color: #075860">0822-1001-9797</a>
+                    </div>
+                    <div class="col-md-1 px-1 d-none d-lg-flex">
+                        <p class="my-auto" style="color:#3199A3">atau</p>
+                    </div>
+                    <div class="col-md-12 px-1 py-auto">
+                        <p class="fs-4 fw-bold">Hubungi kami di 
+                            <span>
+                                
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> *@
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="~/js/controllers/service.js"></script>
